@@ -7,7 +7,18 @@ import { AppWrap } from "../../wrapper";
 import { urlFor, client } from "../../client";
 
 const Work = () => {
-  const handleWorkFilter = (item) => {};
+  const handleWorkFilter = (item) => {
+    setActiveFilter(item);
+    setAnimateCard([{y: 100, opacity: 0}])
+    setTimeout(() => {
+      setAnimateCard([{y: 0, opacity: 1}])
+      if(item === 'All'){
+        setFilterWork(works)
+      }else{
+        setFilterWork(works.filter((work)=> work.tags.includes(item)));
+      }
+    }, 500);
+  };
   const [activeFilter, setActiveFilter] = useState('All')
   const [animateCard, setAnimateCard] = useState({y: 0, opacity: 1})
   const [works, setWorks] = useState([])
@@ -30,7 +41,7 @@ const Work = () => {
         My creative <span> Portfolio </span>
         Section
       </h2>
-      <div className="app__work_filter">
+      <div className="app__work-filter">
         {["UI/UX", "Web App", "ReactJs", "All"].map((item, index) => (
           <div
             key={index}
