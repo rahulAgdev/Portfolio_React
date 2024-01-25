@@ -43,7 +43,7 @@ const Skills = () => {
           ))}
         </motion.div>
         <motion.div className="app__skills-exp">
-        {/* {console.log(experience)} */}
+          {/* {console.log(experience)} */}
           {experience?.map((experience) => (
             <motion.div className="app__skills-exp-item" key={experience.year}>
               <div className="app__skills-exp-year">
@@ -60,7 +60,15 @@ const Skills = () => {
                       data-tip
                       data-for={work.name}
                     >
-                      <h4 className="bold-text" data-tooltip-id={work.name} data-tooltip-content={work.desc} data-tooltip-place="top">{work.name}</h4>
+                      <h4
+                        className="bold-text"
+                        data-tooltip-id={work.name}
+                        data-tooltip-content={work.desc}
+                        data-tooltip-place="top"
+                        data-tooltip-class-name="skills-tooltip"
+                      >
+                        {work.name}
+                      </h4>
                       <p className="p-text">{work.company}</p>
                       <Tooltip
                         id={work.name}
@@ -80,4 +88,4 @@ const Skills = () => {
   );
 };
 
-export default Skills;
+export default AppWrap(Skills, 'skills');
